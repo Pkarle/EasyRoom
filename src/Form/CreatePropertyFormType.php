@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Property;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,8 +19,13 @@ class CreatePropertyFormType extends AbstractType
             ->add('postalCode')
             ->add('region')
             ->add('country')
-            ->add('typeProperty')
-            ->add('pictures')
+            ->add('typeProperty', ChoiceType::class, [
+                'choices' => [
+                    'Full property' => 'fullProperty',
+                    'One room' => 'oneRoom',
+                ],
+            ])
+            //->add('pictures')
             ->add('surface')
         ;
     }
