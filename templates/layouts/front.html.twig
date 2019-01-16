@@ -7,13 +7,22 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="/" class="brand-logo">EasyRoom</a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="#">Les propositions</a></li>
-                </ul>
+        <nav class="blue-grey darken-2">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a href="/" class="brand-logo">EasyRoom</a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="#">Les propositions</a></li>
+                        <li><a href="#">Les propositions</a></li>
+                        {% if app.user %}
+
+                        {% else %}
+                            <li><a href="{{ path('app_login') }}">Login</a></li>
+                            <li><a href="{{ path('app_register') }}">Register</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
             </div>
         </nav>
 
