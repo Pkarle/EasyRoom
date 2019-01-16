@@ -150,12 +150,12 @@ class Property
         return $this;
     }
 
-    public function getPictures(): ?string
+    public function getPictures(): ?array
     {
         return $this->pictures;
     }
 
-    public function setPictures(string $pictures): self
+    public function setPictures(array $pictures): self
     {
         $this->pictures = $pictures;
 

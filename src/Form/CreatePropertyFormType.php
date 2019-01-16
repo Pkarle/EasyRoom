@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class CreatePropertyFormType extends AbstractType
 {
@@ -25,7 +26,9 @@ class CreatePropertyFormType extends AbstractType
                     'One room' => 'oneRoom',
                 ],
             ])
-            //->add('pictures')
+            ->add('pictures', FileType::class, [
+                'multiple' => true
+            ])
             ->add('surface')
         ;
     }
