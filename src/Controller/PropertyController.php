@@ -30,7 +30,11 @@ class PropertyController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            var_dump($property);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($property);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('property');
         }
 
         return $this->render('property/create.html.twig', [
