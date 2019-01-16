@@ -3,45 +3,43 @@
     <head>
         <meta charset="UTF-8">
         <title>EasyRoom | {% block title %}{% endblock %}</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/front.css') }}">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        <nav class="white z-depth-1">
-            <div class="container">
-                <div class="nav-wrapper">
-                    <a class="blue-grey-text text-darken-4"  href="/" class="brand-logo">EasyRoom</a>
-                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                    <ul class="right hide-on-med-and-down">
-                        <li><a class="blue-grey-text text-darken-4" href="#">Les propositions</a></li>
-                        <li><a class="blue-grey-text text-darken-4" href="#">Les propositions</a></li>
-                        {% if app.user %}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('home') }}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('home') }}">Propositions</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav navbar-right">
+                    {% if app.user %}
 
-                        {% else %}
-                            <li><a class="blue-grey-text text-darken-4"  href="{{ path('app_login') }}">Login</a></li>
-                            <li><a class="blue-grey-text text-darken-4"  href="{{ path('app_register') }}">Register</a></li>
-                        {% endif %}
-                    </ul>
-                </div>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link"  href="{{ path('app_login') }}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link"  href="{{ path('app_register') }}">Register</a></li>
+                    {% endif %}
+                </ul>
             </div>
         </nav>
-
-        <ul class="sidenav" id="mobile-demo">
-            <li><a href="#">Les propositions</a></li>
-        </ul>
 
         <main class="container">
             {% block body %}{% endblock %}
         </main>
 
         {% block javascripts %}{% endblock %}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         <script src="{{ asset('assets/js/theme.js') }}"></script>
-        <!-- Compiled and minified CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <!-- Compiled and minified JavaScript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     </body>
 </html>

@@ -14,9 +14,11 @@
     {{ form_row(createPropertyForm.country) }}
     {{ form_row(createPropertyForm.typeProperty) }}
     {{ form_row(createPropertyForm.whole) }}
-    {{ form_row(createPropertyForm.pictures) }}
+    <div class="custom-file">
+        {{ form_row(createPropertyForm.pictures) }}    
+    </div>
     {#{{ form_row(createPropertyForm.pictures) }}#}
     {{ form_row(createPropertyForm.surface) }}
-    <button class="btn">Create</button>
+    <button class="btn btn-primary">Create</button>
     {{ form_end(createPropertyForm) }}
 {% endblock %}
