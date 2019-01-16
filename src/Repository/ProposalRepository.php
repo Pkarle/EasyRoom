@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Proposals;
+use App\Entity\Proposal;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Proposals|null find($id, $lockMode = null, $lockVersion = null)
- * @method Proposals|null findOneBy(array $criteria, array $orderBy = null)
- * @method Proposals[]    findAll()
- * @method Proposals[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Proposal|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Proposal|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Proposal[]    findAll()
+ * @method Proposal[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ProposalsRepository extends ServiceEntityRepository
+class ProposalRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Proposals::class);
+        parent::__construct($registry, Proposal::class);
     }
 
     // /**
-    //  * @return Proposals[] Returns an array of Proposals objects
+    //  * @return Proposal[] Returns an array of Proposal objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ProposalsRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Proposals
+    public function findOneBySomeField($value): ?Proposal
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')
