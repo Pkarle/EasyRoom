@@ -52,6 +52,11 @@ class Property
     private $typeProperty;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+     private $whole;
+
+    /**
      * @ORM\Column(type="array")
      */
     private $pictures;
@@ -152,6 +157,18 @@ class Property
     public function setTypeProperty(string $typeProperty): self
     {
         $this->typeProperty = $typeProperty;
+
+        return $this;
+    }
+
+    public function getWhole(): ?boolean
+    {
+        return $this->whole;
+    }
+
+    public function setWhole(boolean $whole): self
+    {
+        $this->whole = $whole;
 
         return $this;
     }

@@ -2,7 +2,7 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory: { memory: ~ }
-        user_provider: 
+        user_provider:
             entity:
                 class: App\Entity\User
                 property: username
@@ -36,8 +36,11 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/property/create, roles: ROLE_USER }
+        - { path: ^/property/update, roles: ROLE_USER }
+        - { path: ^/property/liste, roles: ROLE_USER }
         - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        
+
+

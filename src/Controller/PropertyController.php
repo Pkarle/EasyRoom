@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use phpDocumentor\Reflection\Types\Void_;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class PropertyController extends AbstractController
 {
@@ -24,7 +25,7 @@ class PropertyController extends AbstractController
     /**
      * @Route("/property/create", name="create_property")
      */
-    public function createProperty(Request $request): Response
+    public function createProperty(Request $request, UserInterface $user): Response
     {
         $property = new Property();
         $form = $this->createForm(CreatePropertyFormType::class, $property);
@@ -37,7 +38,7 @@ class PropertyController extends AbstractController
 
             foreach ($files as $key => $file) {
                 $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
-                
+
                 // Move the file to the directory where brochures are stored
                 try {
                     $file->move(
@@ -52,6 +53,7 @@ class PropertyController extends AbstractController
             }
 
             $property->setPictures($newNames);
+            $property->setUser($user);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($property);
