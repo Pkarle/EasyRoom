@@ -20,7 +20,11 @@
         <ul class="sidenav" id="mobile-demo">
             <li><a href="#">Les propositions</a></li>
         </ul>
-        {% block body %}{% endblock %}
+
+        <main class="container">
+            {% block body %}{% endblock %}
+        </main>
+
         {% block javascripts %}{% endblock %}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
