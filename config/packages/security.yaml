@@ -8,6 +8,12 @@ security:
             security: false
         main:
             anonymous: true
+    encoders:
+        # An encoder has been set for User Entity
+        App\Entity\User:
+            # The password will be encrypted using bcryp encryption system
+            algorithm: bcrypt
+            cost: 12
 
             # activate different ways to authenticate
 
