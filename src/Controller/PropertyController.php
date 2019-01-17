@@ -14,12 +14,26 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class PropertyController extends AbstractController
 {
     /**
-     * @Route("/property", name="property")
+     * Fetch all the properties within the database and send them to the view to be showed the the user
+     * @return Response
+     * @Route("/properties", name="app_properties")
      */
-    public function index()
+    public function properties() : Response
     {
-        return $this->render('property/index.html.twig', [
-            'controller_name' => 'PropertyController',
+
+        $properties = $this->getDoctrine()
+            ->getRepository(Property::class)
+            ->findAll();
+
+
+        if (!$properties) {
+            throw $this->createNotFoundException(
+                'No property has been found'
+            );
+        }
+
+        return $this->render('property/properties.html.twig', [
+            'properties' => $properties
         ]);
     }
     /**

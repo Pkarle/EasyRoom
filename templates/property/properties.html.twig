@@ -1,0 +1,24 @@
+{% extends 'layouts/front.html.twig' %}
+
+{% block title %}Property{% endblock %}
+
+{% block body %}
+
+    <section id="cards">
+        <div class="row">
+            {% for property in properties %}
+                <div class="col col-4">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ asset('uploads/property/images/' ~ property.pictures[1]) }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ property.name }}</h5>
+                            <p class="card-text">{{ property.description[:50]|striptags ~ ' ...' }}</p>
+                            <a href="" class="btn btn-primary">Découvrir</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock %}

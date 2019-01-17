@@ -10,24 +10,31 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <div class="navbar-collapse collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('home') }}">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('home') }}">Propositions</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav navbar-right">
-                    {% if app.user %}
-
-                    {% else %}
-                        <li class="nav-item"><a class="nav-link"  href="{{ path('app_login') }}">Login</a></li>
-                        <li class="nav-item"><a class="nav-link"  href="{{ path('app_register') }}">Register</a></li>
-                    {% endif %}
-                </ul>
+            <div class="container">
+                <a class="navbar-brand" href="#">EasyRoom</a>
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('home') }}">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_properties') }}">Propositions</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav navbar-right">
+                        {% if app.user %}
+                            <li class="nav-item mr-1">
+                                <a href="{{ path('create_property') }}" class="btn btn-outline-primary">Devenir un hôte</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/logout" class="btn btn-danger">Se déconnecter</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link"  href="{{ path('app_login') }}">Login</a></li>
+                            <li class="nav-item"><a class="nav-link"  href="{{ path('app_register') }}">Register</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
             </div>
         </nav>
 
