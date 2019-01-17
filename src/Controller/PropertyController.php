@@ -71,9 +71,16 @@ class PropertyController extends AbstractController
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($property);
+
+            if (!in_array('ROLE_HOTE', $user->getRoles())) {
+                $user->setRoles(['ROLE_HOTE']);
+                $entityManager->persist($user);
+            }
+
+
             $entityManager->flush();
 
-            return $this->redirectToRoute('property');
+            return $this->redirectToRoute('app_properties');
         }
 
         return $this->render('property/create.html.twig', [

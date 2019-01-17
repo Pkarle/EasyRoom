@@ -166,7 +166,7 @@ class Property
         return $this->whole;
     }
 
-    public function setWhole(boolean $whole): self
+    public function setWhole($whole): self
     {
         $this->whole = $whole;
 

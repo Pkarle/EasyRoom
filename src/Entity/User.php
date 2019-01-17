@@ -143,7 +143,15 @@ class User implements UserInterface
 
     public function setRoles(array $roles): self
     {
-        $this->roles = $roles;
+        $new_roles = [];
+
+        foreach ($roles as $role) {
+            if (!in_array($role, $this->roles)) {
+                $new_roles[] = $role;
+            }
+        }
+
+        $this->roles = array_merge($this->roles, $new_roles);
 
         return $this;
     }

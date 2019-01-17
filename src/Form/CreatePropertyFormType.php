@@ -33,7 +33,8 @@ class CreatePropertyFormType extends AbstractType
             ])
             ->add('whole', CheckboxType::class, [
                 'label' => 'Are you willing to rent your full property ?',
-                'attr' => ['class' => 'form-check-input']
+                'attr' => ['class' => 'form-check-input'],
+                'required' => false
             ])
             ->add('pictures', FileType::class, [
                 'multiple' => true,
