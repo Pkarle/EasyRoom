@@ -23,24 +23,21 @@
                     </ul>
                     <ul class="navbar-nav navbar-right">
                         {% if app.user %}
-                            <li class="nav-item mr-1">
-                                <a href="{{ path('create_property') }}" class="btn btn-outline-primary">Devenir un hôte</a>
-                            </li>
-                            <li class="nav-item mr-1">
+                            {% if "ROLE_HOTE" in app.user.roles %}
+                                <li class="nav-item">
+                                    <a href="{{ path('app_user_properties') }}" class="btn btn-primary">Voir mes biens</a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item mr-1">
+                                    <a href="{{ path('create_property') }}" class="btn btn-outline-primary">Devenir un hôte</a>
+                                </li>
+                            {% endif %}
+                            <li class="nav-item mr-1 ml-1">
                                 <a href="/logout" class="btn btn-danger">Se déconnecter</a>
                             </li>
                         {% else %}
                             <li class="nav-item"><a class="nav-link"  href="{{ path('app_login') }}">Login</a></li>
                             <li class="nav-item"><a class="nav-link"  href="{{ path('app_register') }}">Register</a></li>
-                        {% endif %}
-                        {% if app.user %}
-                            {% for role in app.user.roles %}
-                                {% if role == "ROLE_HOTE" %}
-                                    <li class="nav-item">
-                                        <a href="{{ path('app_user_properties') }}" class="btn btn-primary">Voir mes biens</a>
-                                    </li>
-                                {% endif %}
-                            {% endfor %}
                         {% endif %}
                     </ul>
                 </div>
