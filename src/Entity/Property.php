@@ -173,7 +173,7 @@ class Property
         return $this;
     }
 
-    public function getWhole(): ?boolean
+    public function getWhole()
     {
         return $this->whole;
     }

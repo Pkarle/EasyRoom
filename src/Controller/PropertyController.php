@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Property;
+namespace App\Controller;
 
 use App\Entity\Property;
 use App\Form\CreatePropertyFormType;
