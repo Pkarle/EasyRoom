@@ -9,7 +9,7 @@
             {% for property in properties %}
                 <div class="col col-4">
                     <div class="card">
-                        <img class="card-img-top" src="{{ asset('uploads/property/images/' ~ property.pictures[1]) }}" alt="Card image cap">
+                        <img class="card-img-top" src="{{ asset('uploads/property/images/' ~ property.pictures[0]) }}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{{ property.name }}</h5>
                             <p class="card-text">{{ property.description[:50]|striptags ~ ' ...' }}</p>
