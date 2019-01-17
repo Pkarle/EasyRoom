@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Property;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @method Property|null find($id, $lockMode = null, $lockVersion = null)
@@ -47,4 +48,12 @@ class PropertyRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findByUserId($userId) {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.user = :id')
+            ->setParameter('id', $userId)
+            ->getQuery()
+            ->getResult();
+    }
 }
