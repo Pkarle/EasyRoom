@@ -1,3 +1,5 @@
-$(document).ready(function(){
-    $('.sidenav').sidenav();
-});
+var carousel = $('.carousel');
+
+if (carousel) {
+    carousel.carousel();
+}

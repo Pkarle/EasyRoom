@@ -36,6 +36,26 @@ class PropertyController extends AbstractController
             'properties' => $properties
         ]);
     }
+
+    /**
+     * Fetch the right property using the property id
+     * @return Response
+     * @Route("/properties/{id}", name="app_properties_entry")
+     */
+    public function property(int $id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $property = $entityManager->getRepository(Property::class)
+            ->find($id);
+
+        if (!$property) {
+            throw $this->createNotFoundException('The given id is wrong');
+        }
+
+        return $this->render('property/property.html.twig', ['property' => $property]);
+    }
+
     /**
      * @Route("/property/create", name="create_property")
      */

@@ -13,7 +13,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ property.name }}</h5>
                             <p class="card-text">{{ property.description[:50]|striptags ~ ' ...' }}</p>
-                            <a href="" class="btn btn-primary">Découvrir</a>
+                            <a href="{{ path('app_properties_entry', {'id': property.id}) }}" class="btn btn-primary">Découvrir</a>
                         </div>
                     </div>
                 </div>
