@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Property;
 
 class HomeController extends AbstractController
 {
@@ -12,8 +13,12 @@ class HomeController extends AbstractController
      */
     public function index()
     {
+        $entityManager = $this->getDoctrine()->getManager();
+        $latest_properties = $entityManager->getRepository(Property::class)
+            ->findLatestProperty();
+
         return $this->render('pages/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'latest_properties' => $latest_properties
         ]);
     }
 }

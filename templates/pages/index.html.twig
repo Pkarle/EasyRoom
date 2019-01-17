@@ -2,6 +2,46 @@
 
 {% block title %}Accueil{% endblock %}
 
+{% block ban %}
+
+<section class="ban home-ban">
+    <div class="search-bar">
+        <form action="">
+            <input type="text" class="search" placeholder="Rechercher l'un de vos biens ...">
+        </form>
+    </div>
+    <img src="https://i.pinimg.com/originals/8e/3f/e0/8e3fe00e88d16015d68d7397bd3598b4.jpg" alt="">
+</section>
+
+{% endblock %}
+
 {% block body %}
+
+    <section class="section_latest_properties">
+        <h2 class="mb-4">Nos derniers biens</h2>
+        <div class="row">
+            {% for key, property in latest_properties %}
+                    <div class="col col-6">
+                        <div class="card mb-4">
+                            <img class="card-img-top" src="{{ asset('uploads/property/images/' ~ property.pictures[0]) }}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ property.name }}</h5>
+                                <p class="card-text">{{ property.description[:50]|striptags ~ ' ...' }}</p>
+                                <a href="{{ path('app_properties_entry', {'id': property.id}) }}" class="btn btn-primary">Découvrir</a>
+                            </div>
+                        </div>
+                    </div>
+                {% if key == 1 %}
+                    <div class="w-100"></div>
+                {% endif %}
+                {% if key == 3 %}
+                    <div class="w-100"></div>
+                {% endif %}
+                {% if key == 5 %}
+                    <div class="w-100"></div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
 
 {% endblock %}
