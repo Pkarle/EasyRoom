@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -71,6 +73,16 @@ class Property
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Proposal", mappedBy="property", orphanRemoval=true)
+     */
+    private $proposals;
+
+    public function __construct()
+    {
+        $this->proposals = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -205,6 +217,37 @@ class Property
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Proposal[]
+     */
+    public function getProposals(): Collection
+    {
+        return $this->proposals;
+    }
+
+    public function addProposal(Proposal $proposal): self
+    {
+        if (!$this->proposals->contains($proposal)) {
+            $this->proposals[] = $proposal;
+            $proposal->setProperty($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProposal(Proposal $proposal): self
+    {
+        if ($this->proposals->contains($proposal)) {
+            $this->proposals->removeElement($proposal);
+            // set the owning side to null (unless already changed)
+            if ($proposal->getProperty() === $this) {
+                $proposal->setProperty(null);
+            }
+        }
 
         return $this;
     }
