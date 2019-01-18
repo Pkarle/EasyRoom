@@ -2,15 +2,19 @@
 
 namespace App\Controller;
 
+use App\Entity\Reservation;
 use App\Form\CreateReservationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * @Route("/reservation", name="reservation")
+ */
 class ReservationController extends AbstractController
 {
     /**
-     * @Route("/reservation", name="reservation")
+     * @Route("/", name="reservationIndex")
      */
     public function index()
     {
@@ -20,11 +24,11 @@ class ReservationController extends AbstractController
     }
 
     /**
-     * @Route("/reservation/create", name="create_eservation")
+     * @Route("/create", name="create_eservation")
      * @param Request $request
-     * @return Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function createReservation(Request $request): Response
+    public function createReservation(Request $request)
     {
         $reservation = new Reservation();
         $form = $this->createForm(CreateReservationFormType::class, $reservation );
