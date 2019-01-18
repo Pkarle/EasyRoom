@@ -79,9 +79,15 @@ class Property
      */
     private $proposals;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Equipment")
+     */
+    private $equipements;
+
     public function __construct()
     {
         $this->proposals = new ArrayCollection();
+        $this->equipements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -247,6 +253,32 @@ class Property
             if ($proposal->getProperty() === $this) {
                 $proposal->setProperty(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Equipment[]
+     */
+    public function getEquipements(): Collection
+    {
+        return $this->equipements;
+    }
+
+    public function addEquipement(Equipment $equipement): self
+    {
+        if (!$this->equipements->contains($equipement)) {
+            $this->equipements[] = $equipement;
+        }
+
+        return $this;
+    }
+
+    public function removeEquipement(Equipment $equipement): self
+    {
+        if ($this->equipements->contains($equipement)) {
+            $this->equipements->removeElement($equipement);
         }
 
         return $this;
