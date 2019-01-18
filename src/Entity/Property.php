@@ -82,12 +82,12 @@ class Property
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Equipment")
      */
-    private $equipements;
+    private $equipments;
 
     public function __construct()
     {
         $this->proposals = new ArrayCollection();
-        $this->equipements = new ArrayCollection();
+        $this->equipments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -261,15 +261,15 @@ class Property
     /**
      * @return Collection|Equipment[]
      */
-    public function getEquipements(): Collection
+    public function getEquipments(): Collection
     {
-        return $this->equipements;
+        return $this->equipments;
     }
 
     public function addEquipement(Equipment $equipement): self
     {
-        if (!$this->equipements->contains($equipement)) {
-            $this->equipements[] = $equipement;
+        if (!$this->equipments->contains($equipement)) {
+            $this->equipments[] = $equipement;
         }
 
         return $this;
@@ -277,8 +277,8 @@ class Property
 
     public function removeEquipement(Equipment $equipement): self
     {
-        if ($this->equipements->contains($equipement)) {
-            $this->equipements->removeElement($equipement);
+        if ($this->equipments->contains($equipement)) {
+            $this->equipments->removeElement($equipement);
         }
 
         return $this;

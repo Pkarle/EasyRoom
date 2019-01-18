@@ -30,6 +30,11 @@
 <section id="property-content">
     <h2 class="content">{{ property.name }}</h2>
     <p class="content">{{ property.description }}</p>
+    <ul class="content">
+        {% for equipment in property.equipments %}
+            <li>{{ equipment.name }} - {{ equipment.description }}</li>
+        {% endfor %}
+    </ul>
 </section>
 
 {% endblock %}
