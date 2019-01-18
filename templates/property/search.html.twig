@@ -1,0 +1,22 @@
+{% extends 'layouts/front.html.twig' %}
+
+{% block title %}Search property{% endblock %}
+
+{% block body %}
+    <h1>Résultat de votre recherche pour : {{q}}</h1>
+
+    <div class="row">
+    {% for property in properties %}
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <img class="card-img-top" src="{{ asset('uploads/property/images/' ~ property.pictures[0]) }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ property.name }}</h5>
+                    <p class="card-text">{{ property.description[:50]|striptags ~ ' ...' }}</p>
+                    <a href="{{ path('app_properties_entry', {'id': property.id}) }}" class="btn btn-primary">Découvrir</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
