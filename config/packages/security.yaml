@@ -40,7 +40,7 @@ security:
         - { path: ^/property/update, roles: ROLE_USER }
         - { path: ^/property/liste, roles: ROLE_USER }
         - { path: ^/property/liste, roles: ROLE_USER }
-        - { path: ^/user/properties, roles: ROLE_HOTE }
+        - { path: ^/user/properties, roles: ROLE_USER }
         - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
