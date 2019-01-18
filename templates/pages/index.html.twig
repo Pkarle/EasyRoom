@@ -6,9 +6,12 @@
 
 <section class="ban home-ban">
     <div class="search-bar">
-        <form action="">
-            <input type="text" class="search" placeholder="Rechercher l'un de vos biens ...">
-        </form>
+        {{form_start(form)}}
+            {{form_widget(form.q, {attr: {
+                'class': 'form-control',
+                'placeholder': "Rechercher l'un de vos biens ..."
+            }})}}
+        {{form_end(form)}}
     </div>
     <img src="https://i.pinimg.com/originals/8e/3f/e0/8e3fe00e88d16015d68d7397bd3598b4.jpg" alt="">
 </section>

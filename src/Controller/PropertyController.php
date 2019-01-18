@@ -57,6 +57,23 @@ class PropertyController extends AbstractController
     }
 
     /**
+     * @Route("/property/search", name="search_property")
+     */
+    
+    public function searchProperty(Request $request){
+        $properties = $this->getDoctrine()->getRepository(Property::class)->createQueryBuilder('p')
+        ->where('p.name like :q')
+        ->setParameter('q', '%' . $request->get("search_form")['q'] . '%')
+        ->getQuery()
+        ->getResult();
+        
+        return $this->render('property/search.html.twig', [
+            'q' => $request->query->get("search_form")['q'],
+            'properties' => $properties
+        ]);
+    }
+
+    /**
      * @Route("/property/create", name="create_property")
      */
     public function createProperty(Request $request, UserInterface $user): Response
