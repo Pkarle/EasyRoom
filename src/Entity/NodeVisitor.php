@@ -1,18 +1,19 @@
 <?php
 
+namespace App\Entity;
 use GraphAware\Neo4j\OGM\Annotations as OGM;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @OGM\Node(label="User")
+ * @OGM\Node(label="Visitor")
  */
-class User
+class NodeVisitor
 {
     /** @OGM\GraphId() */
     protected $id;
+
     /** @OGM\Property(type="string") */
     protected $name;
-    /** @OGM\Property(type="int") */
-    protected $age;
 
     /**
      * @return mixed
@@ -44,22 +45,6 @@ class User
     public function setName($name): void
     {
         $this->name = $name;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAge()
-    {
-        return $this->age;
-    }
-
-    /**
-     * @param mixed $age
-     */
-    public function setAge($age): void
-    {
-        $this->age = $age;
     }
 
 
