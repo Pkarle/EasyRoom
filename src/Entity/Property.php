@@ -69,7 +69,7 @@ class Property
     private $surface;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="properties")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="properties")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;

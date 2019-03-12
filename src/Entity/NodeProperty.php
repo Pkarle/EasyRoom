@@ -2,16 +2,17 @@
 
 namespace App\Entity;
 
-use App\Entity\NodeProperty;
+use App\Entity\NodeVisitor;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Collection ;
+use Doctrine\DBAL\Schema\Visitor\Visitor;
 use GraphAware\Neo4j\OGM\Annotations as OGM;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @OGM\Node(label="Visitor")
+ * @OGM\Node(label="Property")
  */
-class NodeVisitor
+class NodeProperty
 {
     /** @OGM\GraphId() */
     protected $id;
@@ -22,7 +23,7 @@ class NodeVisitor
     /**
      * @var Property[]|Collection
      *
-     * @OGM\Relationship(relationshipEntity="App\Entity\NodePropertyConsultation", type="CONSULT", direction="OUTGOING", collection=true, mappedBy="visitor")
+     * @OGM\Relationship(relationshipEntity="App\Entity\NodePropertyConsultation", type="CONSULT", direction="INCOMING", collection=true, mappedBy="property")
      */
     protected $consultations;
 
@@ -35,7 +36,7 @@ class NodeVisitor
     }
 
     /**
-     * NodeVisitor constructor.
+     * NodeProperty constructor.
      * @param Property[]|Collection $consultations
      */
     public function __construct()
@@ -74,6 +75,5 @@ class NodeVisitor
     {
         $this->name = $name;
     }
-
 
 }
