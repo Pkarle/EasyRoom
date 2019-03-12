@@ -11,6 +11,7 @@ use App\Form\CreatePropertyFormType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use phpDocumentor\Reflection\Types\Void_;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -47,31 +48,18 @@ class PropertyController extends AbstractController
      * @return Response
      * @Route("/properties/{id}", name="app_properties_entry")
      */
-    public function property(int $id, EntityManagerInterface $emg)
+    public function property(Property $property, EntityManagerInterface $emg, SessionInterface $session)
     {
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $property = $entityManager->getRepository(Property::class)
-            ->find($id);
 
         if (!$property) {
             throw $this->createNotFoundException('The given id is wrong');
         }
 
-        //$visitorRepo = $emg->getRepository(NodeVisitor::class);
-        //$consultationRepo = $emg->getRepository(NodePropertyConsultation::class);
+        $visitorId = $session->get('visitorId');
+        $visitorG = $emg->getRepository(NodeVisitor::class)->findOneBy(['name' => $visitorId]);
 
-        //$NodeProperty = $visitorRepo->findOneBy(['name' => 'Grande maison avec piscine']);
+        $propertyG = $emg->getRepository(NodeProperty::class)->findOneBy(['dbId'=>$property->getId()]);
 
-        //$NodeVisitor->getProperties()->add($NodeProperty);
-        //$NodeProperty->getVisitors()->add($NodeVisitor);
-
-
-        $visitorG = $emg->getRepository(NodeVisitor::class)->find(24);
-        $propertyG = $emg->getRepository(NodeProperty::class)->find(88);
-
-        //$propertyRepo = $emg->getRepository(NodeProperty::class);
-        //$NodeProperty = $propertyRepo->findOneBy(['name' => 'Grand appartement']);
 
         if ($visitorG instanceof NodeVisitor && $propertyG instanceof NodeProperty) {
             $nodeConsultation = new NodePropertyConsultation($visitorG, $propertyG);
@@ -83,6 +71,8 @@ class PropertyController extends AbstractController
             $emg->persist($visitorG);
             $emg->persist($propertyG);
             $emg->flush();
+        }else{
+            dd([$visitorG, $propertyG]);
         }
 
 
@@ -130,12 +120,14 @@ class PropertyController extends AbstractController
                 $entityManager->persist($user);
             }
 
+            $entityManager->flush();
+
             $bart = new NodeProperty();
             $bart->setName($property->getName());
+            $bart->setDbId($property->getId());
             $emg->persist($bart);
             $emg->flush($bart);
 
-            $entityManager->flush();
 
             return $this->redirectToRoute('app_properties');
 

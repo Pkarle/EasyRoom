@@ -18,15 +18,7 @@ class IndexController extends AbstractController
      */
     public function index(EntityManagerInterface $emg)
     {
-        $visitor = $this->get('session')->get('visitorId');
-        $visitorG = $emg->getRepository(NodeVisitor::class)->findOneBy(['name'=> $visitor]);
 
-        if(!$visitorG) {
-            $bart = new NodeVisitor();
-            $bart->setName($visitor);
-            $emg->persist($bart);
-            $emg->flush($bart);
-        }
 
         //return new JsonResponse([]);
 

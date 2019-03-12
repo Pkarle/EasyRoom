@@ -21,6 +21,10 @@ class NodeProperty
     protected $name;
 
     /**
+     * @OGM\Property(type="int")
+     */
+    protected $dbId;
+    /**
      * @var Property[]|Collection
      *
      * @OGM\Relationship(relationshipEntity="App\Entity\NodePropertyConsultation", type="CONSULT", direction="INCOMING", collection=true, mappedBy="property")
@@ -74,6 +78,22 @@ class NodeProperty
     public function setName($name): void
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDbId()
+    {
+        return $this->dbId;
+    }
+
+    /**
+     * @param mixed $dbId
+     */
+    public function setDbId($dbId): void
+    {
+        $this->dbId = $dbId;
     }
 
 }
